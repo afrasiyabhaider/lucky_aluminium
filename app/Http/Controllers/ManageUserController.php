@@ -45,10 +45,13 @@ class ManageUserController extends Controller
             $user_id = request()->session()->get('user.id');
 
             $users = User::where('business_id', $business_id)
-                        ->where('id', '!=', $user_id)
-                        ->where('is_cmmsn_agnt', 0)
-                        ->select(['id', 'username',
-                            DB::raw("CONCAT(COALESCE(surname, ''), ' ', COALESCE(first_name, ''), ' ', COALESCE(last_name, '')) as full_name"), 'email']);
+                ->where('id', '!=', $user_id)
+                ->where('username', '!=', 'superadmin')
+                ->where('is_cmmsn_agnt', 0)
+                ->select([
+                    'id', 'username',
+                    DB::raw("CONCAT(COALESCE(surname, ''), ' ', COALESCE(first_name, ''), ' ', COALESCE(last_name, '')) as full_name"), 'email'
+                ]);
 
             return Datatables::of($users)
                 ->addColumn(
@@ -107,11 +110,11 @@ class ManageUserController extends Controller
         $username_ext = $this->getUsernameExtension();
         $contacts = Contact::contactDropdown($business_id, true, false);
         $locations = BusinessLocation::where('business_id', $business_id)
-                                    ->Active()
-                                    ->get();
+            ->Active()
+            ->get();
 
         return view('manage_user.create')
-                ->with(compact('roles', 'username_ext', 'contacts', 'locations'));
+            ->with(compact('roles', 'username_ext', 'contacts', 'locations'));
     }
 
     /**
@@ -127,14 +130,16 @@ class ManageUserController extends Controller
         }
 
         try {
-            $user_details = $request->only(['surname', 'first_name', 'last_name', 'username', 'email', 'password', 'selected_contacts', 'marital_status',
+            $user_details = $request->only([
+                'surname', 'first_name', 'last_name', 'username', 'email', 'password', 'selected_contacts', 'marital_status',
                 'blood_group', 'contact_number', 'fb_link', 'twitter_link', 'social_media_1',
                 'social_media_2', 'permanent_address', 'current_address',
                 'guardian_name', 'custom_field_1', 'custom_field_2',
-                'custom_field_3', 'custom_field_4', 'id_proof_name', 'id_proof_number', 'cmmsn_percent']);
-            
+                'custom_field_3', 'custom_field_4', 'id_proof_name', 'id_proof_number', 'cmmsn_percent'
+            ]);
+
             $user_details['status'] = !empty($request->input('is_active')) ? 'active' : 'inactive';
-            
+
             if (!isset($user_details['selected_contacts'])) {
                 $user_details['selected_contacts'] = false;
             }
@@ -187,15 +192,17 @@ class ManageUserController extends Controller
             //Grant Location permissions
             $this->giveLocationPermissions($user, $request);
 
-            $output = ['success' => 1,
-                        'msg' => __("user.user_added")
-                    ];
+            $output = [
+                'success' => 1,
+                'msg' => __("user.user_added")
+            ];
         } catch (\Exception $e) {
-            \Log::emergency("File:" . $e->getFile(). "Line:" . $e->getLine(). "Message:" . $e->getMessage());
-            
-            $output = ['success' => 0,
-                        'msg' => __("messages.something_went_wrong")
-                    ];
+            \Log::emergency("File:" . $e->getFile() . "Line:" . $e->getLine() . "Message:" . $e->getMessage());
+
+            $output = [
+                'success' => 0,
+                'msg' => __("messages.something_went_wrong")
+            ];
         }
 
         return redirect('users')->with('status', $output);
@@ -216,8 +223,8 @@ class ManageUserController extends Controller
         $business_id = request()->session()->get('user.business_id');
 
         $user = User::where('business_id', $business_id)
-                    ->with(['contactAccess'])
-                    ->find($id);
+            ->with(['contactAccess'])
+            ->find($id);
 
         return view('manage_user.show')->with(compact('user'));
     }
@@ -236,8 +243,8 @@ class ManageUserController extends Controller
 
         $business_id = request()->session()->get('user.business_id');
         $user = User::where('business_id', $business_id)
-                    ->with(['contactAccess'])
-                    ->findOrFail($id);
+            ->with(['contactAccess'])
+            ->findOrFail($id);
 
         $roles = $this->getRolesArray($business_id);
 
@@ -251,12 +258,12 @@ class ManageUserController extends Controller
         }
 
         $locations = BusinessLocation::where('business_id', $business_id)
-                                    ->get();
+            ->get();
 
         $permitted_locations = $user->permitted_locations();
-        
+
         return view('manage_user.edit')
-                ->with(compact('roles', 'user', 'contact_access', 'contacts', 'is_checked_checkbox', 'locations', 'permitted_locations'));
+            ->with(compact('roles', 'user', 'contact_access', 'contacts', 'is_checked_checkbox', 'locations', 'permitted_locations'));
     }
 
     /**
@@ -273,11 +280,13 @@ class ManageUserController extends Controller
         }
 
         try {
-            $user_data = $request->only(['surname', 'first_name', 'last_name', 'email', 'selected_contacts', 'marital_status',
+            $user_data = $request->only([
+                'surname', 'first_name', 'last_name', 'email', 'selected_contacts', 'marital_status',
                 'blood_group', 'contact_number', 'fb_link', 'twitter_link', 'social_media_1',
                 'social_media_2', 'permanent_address', 'current_address',
                 'guardian_name', 'custom_field_1', 'custom_field_2',
-                'custom_field_3', 'custom_field_4', 'id_proof_name', 'id_proof_number', 'cmmsn_percent']);
+                'custom_field_3', 'custom_field_4', 'id_proof_name', 'id_proof_number', 'cmmsn_percent'
+            ]);
 
             $user_data['status'] = !empty($request->input('is_active')) ? 'active' : 'inactive';
             $business_id = request()->session()->get('user.business_id');
@@ -302,7 +311,7 @@ class ManageUserController extends Controller
             }
 
             $user = User::where('business_id', $business_id)
-                          ->findOrFail($id);
+                ->findOrFail($id);
 
             $user->update($user_data);
 
@@ -327,15 +336,17 @@ class ManageUserController extends Controller
             //Grant Location permissions
             $this->giveLocationPermissions($user, $request);
 
-            $output = ['success' => 1,
-                        'msg' => __("user.user_update_success")
-                    ];
+            $output = [
+                'success' => 1,
+                'msg' => __("user.user_update_success")
+            ];
         } catch (\Exception $e) {
-            \Log::emergency("File:" . $e->getFile(). "Line:" . $e->getLine(). "Message:" . $e->getMessage());
-            
-            $output = ['success' => 0,
-                            'msg' => __("messages.something_went_wrong")
-                        ];
+            \Log::emergency("File:" . $e->getFile() . "Line:" . $e->getLine() . "Message:" . $e->getMessage());
+
+            $output = [
+                'success' => 0,
+                'msg' => __("messages.something_went_wrong")
+            ];
         }
 
         return redirect('users')->with('status', $output);
@@ -356,19 +367,21 @@ class ManageUserController extends Controller
         if (request()->ajax()) {
             try {
                 $business_id = request()->session()->get('user.business_id');
-                
+
                 User::where('business_id', $business_id)
                     ->where('id', $id)->delete();
 
-                $output = ['success' => true,
-                                'msg' => __("user.user_delete_success")
-                                ];
+                $output = [
+                    'success' => true,
+                    'msg' => __("user.user_delete_success")
+                ];
             } catch (\Exception $e) {
-                \Log::emergency("File:" . $e->getFile(). "Line:" . $e->getLine(). "Message:" . $e->getMessage());
-            
-                $output = ['success' => false,
-                            'msg' => __("messages.something_went_wrong")
-                        ];
+                \Log::emergency("File:" . $e->getFile() . "Line:" . $e->getLine() . "Message:" . $e->getMessage());
+
+                $output = [
+                    'success' => false,
+                    'msg' => __("messages.something_went_wrong")
+                ];
             }
 
             return $output;
@@ -377,7 +390,7 @@ class ManageUserController extends Controller
 
     private function getUsernameExtension()
     {
-        $extension = !empty(System::getProperty('enable_business_based_username')) ? '-' .str_pad(session()->get('business.id'), 2, 0, STR_PAD_LEFT) : null;
+        $extension = !empty(System::getProperty('enable_business_based_username')) ? '-' . str_pad(session()->get('business.id'), 2, 0, STR_PAD_LEFT) : null;
         return $extension;
     }
 
@@ -418,8 +431,10 @@ class ManageUserController extends Controller
 
         //Include location permissions
         $location_permissions = $request->input('location_permissions');
-        if (empty($permissions) &&
-            !empty($location_permissions)) {
+        if (
+            empty($permissions) &&
+            !empty($location_permissions)
+        ) {
             $permissions = [];
             foreach ($location_permissions as $location_permission) {
                 $permissions[] = $location_permission;
