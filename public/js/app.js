@@ -77,13 +77,11 @@ $(document).ready(function() {
         processing: true,
         serverSide: true,
         ajax: '/brands',
-        columnDefs: [
-            {
-                targets: 2,
-                orderable: false,
-                searchable: false,
-            },
-        ],
+        columnDefs: [{
+            targets: 2,
+            orderable: false,
+            searchable: false,
+        }, ],
     });
 
     $(document).on('click', 'button.edit_brand_button', function() {
@@ -153,13 +151,11 @@ $(document).ready(function() {
         processing: true,
         serverSide: true,
         ajax: '/tax-rates',
-        columnDefs: [
-            {
-                targets: 2,
-                orderable: false,
-                searchable: false,
-            },
-        ],
+        columnDefs: [{
+            targets: 2,
+            orderable: false,
+            searchable: false,
+        }, ],
     });
 
     $(document).on('submit', 'form#tax_rate_add_form', function(e) {
@@ -256,18 +252,27 @@ $(document).ready(function() {
         processing: true,
         serverSide: true,
         ajax: '/units',
-        columnDefs: [
-            {
-                targets: 3,
-                orderable: false,
-                searchable: false,
+        columnDefs: [{
+            targets: 3,
+            orderable: false,
+            searchable: false,
+        }, ],
+        columns: [{
+                data: 'actual_name',
+                name: 'actual_name'
             },
-        ],
-        columns: [
-            { data: 'actual_name', name: 'actual_name' },
-            { data: 'short_name', name: 'short_name' },
-            { data: 'allow_decimal', name: 'allow_decimal' },
-            { data: 'action', name: 'action' },
+            {
+                data: 'short_name',
+                name: 'short_name'
+            },
+            {
+                data: 'allow_decimal',
+                name: 'allow_decimal'
+            },
+            {
+                data: 'action',
+                name: 'action'
+            },
         ],
     });
 
@@ -359,34 +364,94 @@ $(document).ready(function() {
     //contacts table
     var contact_table_type = $('#contact_type').val();
     if (contact_table_type == 'supplier') {
-        var columns = [
-            { data: 'contact_id', name: 'contact_id' },
-            { data: 'supplier_business_name', name: 'supplier_business_name' },
-            { data: 'name', name: 'name' },
-            { data: 'created_at', name: 'contacts.created_at' },
-            { data: 'mobile', name: 'mobile' },
-            { data: 'due', searchable: false, orderable: false },
-            { data: 'return_due', searchable: false, orderable: false },
-            { data: 'action', searchable: false, orderable: false },
+        var columns = [{
+                data: 'contact_id',
+                name: 'contact_id'
+            },
+            {
+                data: 'supplier_business_name',
+                name: 'supplier_business_name'
+            },
+            {
+                data: 'name',
+                name: 'name'
+            },
+            {
+                data: 'created_at',
+                name: 'contacts.created_at'
+            },
+            {
+                data: 'mobile',
+                name: 'mobile'
+            },
+            {
+                data: 'due',
+                searchable: false,
+                orderable: false
+            },
+            {
+                data: 'return_due',
+                searchable: false,
+                orderable: false
+            },
+            {
+                data: 'action',
+                searchable: false,
+                orderable: false
+            },
         ];
     } else if (contact_table_type == 'customer') {
-        var columns = [
-            { data: 'contact_id', name: 'contact_id' },
-            { data: 'name', name: 'name' },
-            { data: 'created_at', name: 'contacts.created_at' }
+        var columns = [{
+                data: 'contact_id',
+                name: 'contact_id'
+            },
+            {
+                data: 'name',
+                name: 'name'
+            },
+            {
+                data: 'created_at',
+                name: 'contacts.created_at'
+            }
         ];
 
         if ($('#rp_col').length) {
-            columns.push({ data: 'total_rp', name: 'total_rp' });
+            columns.push({
+                data: 'total_rp',
+                name: 'total_rp'
+            });
         }
-        Array.prototype.push.apply(columns, [{ data: 'customer_group', name: 'cg.name' },
-            { data: 'address', name: 'address', orderable: false },
-            { data: 'mobile', name: 'mobile' },
-            { data: 'due', searchable: false, orderable: false },
-            { data: 'return_due', searchable: false, orderable: false },
-            { data: 'action', searchable: false, orderable: false }]);
+        Array.prototype.push.apply(columns, [{
+                data: 'customer_group',
+                name: 'cg.name'
+            },
+            {
+                data: 'address',
+                name: 'address',
+                orderable: false
+            },
+            {
+                data: 'mobile',
+                name: 'mobile'
+            },
+            {
+                data: 'due',
+                searchable: false,
+                orderable: false
+            },
+            {
+                data: 'return_due',
+                searchable: false,
+                orderable: false
+            },
+            {
+                data: 'action',
+                searchable: false,
+                orderable: false
+            }
+        ]);
     }
-    
+
     var contact_table = $('#contact_table').DataTable({
         processing: true,
         serverSide: true,
@@ -526,13 +591,11 @@ $(document).ready(function() {
         processing: true,
         serverSide: true,
         ajax: '/categories',
-        columnDefs: [
-            {
-                targets: 2,
-                orderable: false,
-                searchable: false,
-            },
-        ],
+        columnDefs: [{
+            targets: 2,
+            orderable: false,
+            searchable: false,
+        }, ],
     });
     $(document).on('submit', 'form#category_add_form', function(e) {
         e.preventDefault();
@@ -624,13 +687,11 @@ $(document).ready(function() {
         processing: true,
         serverSide: true,
         ajax: '/variation-templates',
-        columnDefs: [
-            {
-                targets: 2,
-                orderable: false,
-                searchable: false,
-            },
-        ],
+        columnDefs: [{
+            targets: 2,
+            orderable: false,
+            searchable: false,
+        }, ],
     });
     $(document).on('click', '#add_variation_values', function() {
         var html =
@@ -747,8 +808,7 @@ $(document).ready(function() {
 
     $(document).mouseup(function(ev) {
         active = false;
-        if (
-            !$(ev.target).hasClass('drag-select') &&
+        if (!$(ev.target).hasClass('drag-select') &&
             !$(ev.target).hasClass('dpp') &&
             !$(ev.target).hasClass('dsp')
         ) {
@@ -787,7 +847,10 @@ $(document).ready(function() {
         $.ajax({
             method: 'POST',
             url: '/products/get_product_variation_row',
-            data: { row_index: row_index, action: action },
+            data: {
+                row_index: row_index,
+                action: action
+            },
             dataType: 'html',
             success: function(result) {
                 if (result) {
@@ -879,18 +942,27 @@ $(document).ready(function() {
         processing: true,
         serverSide: true,
         ajax: '/group-taxes',
-        columnDefs: [
-            {
-                targets: [2, 3],
-                orderable: false,
-                searchable: false,
+        columnDefs: [{
+            targets: [2, 3],
+            orderable: false,
+            searchable: false,
+        }, ],
+        columns: [{
+                data: 'name',
+                name: 'name'
             },
-        ],
-        columns: [
-            { data: 'name', name: 'name' },
-            { data: 'amount', name: 'amount' },
-            { data: 'sub_taxes', name: 'sub_taxes' },
-            { data: 'action', name: 'action' },
+            {
+                data: 'amount',
+                name: 'amount'
+            },
+            {
+                data: 'sub_taxes',
+                name: 'sub_taxes'
+            },
+            {
+                data: 'action',
+                name: 'action'
+            },
         ],
     });
     $('.tax_group_modal').on('shown.bs.modal', function() {
@@ -1030,13 +1102,11 @@ $(document).ready(function() {
         bPaginate: false,
         buttons: [],
         ajax: '/invoice-schemes',
-        columnDefs: [
-            {
-                targets: 4,
-                orderable: false,
-                searchable: false,
-            },
-        ],
+        columnDefs: [{
+            targets: 4,
+            orderable: false,
+            searchable: false,
+        }, ],
     });
     $(document).on('submit', 'form#invoice_scheme_add_form', function(e) {
         e.preventDefault();
@@ -1171,13 +1241,11 @@ $(document).ready(function() {
         bPaginate: false,
         buttons: [],
         ajax: '/business-location',
-        columnDefs: [
-            {
-                targets: 10,
-                orderable: false,
-                searchable: false,
-            },
-        ],
+        columnDefs: [{
+            targets: 10,
+            orderable: false,
+            searchable: false,
+        }, ],
     });
     $('.location_add_modal, .location_edit_modal').on('shown.bs.modal', function(e) {
         $('form#business_location_add_form')
@@ -1250,13 +1318,11 @@ $(document).ready(function() {
         processing: true,
         serverSide: true,
         ajax: '/expense-categories',
-        columnDefs: [
-            {
-                targets: 2,
-                orderable: false,
-                searchable: false,
-            },
-        ],
+        columnDefs: [{
+            targets: 2,
+            orderable: false,
+            searchable: false,
+        }, ],
     });
     $(document).on('submit', 'form#expense_category_add_form', function(e) {
         e.preventDefault();
@@ -1332,7 +1398,9 @@ $(document).ready(function() {
     expense_table = $('#expense_table').DataTable({
         processing: true,
         serverSide: true,
-        aaSorting: [[1, 'desc']],
+        aaSorting: [
+            [1, 'desc']
+        ],
         ajax: {
             url: '/expenses',
             data: function(d) {
@@ -1348,19 +1416,57 @@ $(document).ready(function() {
                     .endDate.format('YYYY-MM-DD');
             },
         },
-        columns: [
-            { data: 'action', name: 'action', orderable: false, searchable: false },
-            { data: 'transaction_date', name: 'transaction_date' },
-            { data: 'ref_no', name: 'ref_no' },
-            { data: 'category', name: 'ec.name' },
-            { data: 'location_name', name: 'bl.name' },
-            { data: 'payment_status', name: 'payment_status', orderable: false },
-            { data: 'tax', name: 'tr.name' },
-            { data: 'final_total', name: 'final_total' },
-            { data: 'payment_due', name: 'payment_due' },
-            { data: 'expense_for', name: 'expense_for' },
-            { data: 'additional_notes', name: 'additional_notes' },
-            { data: 'added_by', name: 'usr.first_name'},
+        columns: [{
+                data: 'action',
+                name: 'action',
+                orderable: false,
+                searchable: false
+            },
+            {
+                data: 'transaction_date',
+                name: 'transaction_date'
+            },
+            {
+                data: 'ref_no',
+                name: 'ref_no'
+            },
+            {
+                data: 'category',
+                name: 'ec.name'
+            },
+            {
+                data: 'location_name',
+                name: 'bl.name'
+            },
+            {
+                data: 'payment_status',
+                name: 'payment_status',
+                orderable: false
+            },
+            {
+                data: 'tax',
+                name: 'tr.name'
+            },
+            {
+                data: 'final_total',
+                name: 'final_total'
+            },
+            {
+                data: 'payment_due',
+                name: 'payment_due'
+            },
+            {
+                data: 'expense_for',
+                name: 'expense_for'
+            },
+            {
+                data: 'additional_notes',
+                name: 'additional_notes'
+            },
+            {
+                data: 'added_by',
+                name: 'usr.first_name'
+            },
         ],
         fnDrawCallback: function(oSettings) {
             var expense_total = sum_table_col($('#expense_table'), 'final-total');
@@ -1543,20 +1649,29 @@ $(document).ready(function() {
         processing: true,
         serverSide: true,
         ajax: '/sales-commission-agents',
-        columnDefs: [
-            {
-                targets: 2,
-                orderable: false,
-                searchable: false,
+        columnDefs: [{
+            targets: 2,
+            orderable: false,
+            searchable: false,
+        }, ],
+        columns: [{
+                data: 'full_name'
             },
-        ],
-        columns: [
-            { data: 'full_name' },
-            { data: 'email' },
-            { data: 'contact_no' },
-            { data: 'address' },
-            { data: 'cmmsn_percent' },
-            { data: 'action' },
+            {
+                data: 'email'
+            },
+            {
+                data: 'contact_no'
+            },
+            {
+                data: 'address'
+            },
+            {
+                data: 'cmmsn_percent'
+            },
+            {
+                data: 'action'
+            },
         ],
     });
     $('div.commission_agent_modal').on('shown.bs.modal', function(e) {
@@ -1648,13 +1763,11 @@ $(document).ready(function() {
         processing: true,
         serverSide: true,
         ajax: '/customer-group',
-        columnDefs: [
-            {
-                targets: 2,
-                orderable: false,
-                searchable: false,
-            },
-        ],
+        columnDefs: [{
+            targets: 2,
+            orderable: false,
+            searchable: false,
+        }, ],
     });
 
     $(document).on('click', 'button.edit_customer_group_button', function() {
@@ -1782,7 +1895,9 @@ $('.quick_add_product_modal').on('shown.bs.modal', function() {
         .find('.select2')
         .each(function() {
             var $p = $(this).parent();
-            $(this).select2({ dropdownParent: $p });
+            $(this).select2({
+                dropdownParent: $p
+            });
         });
     $('.quick_add_product_modal')
         .find('input[type="checkbox"].input-icheck')
@@ -1798,24 +1913,47 @@ discounts_table = $('#discounts_table').DataTable({
     processing: true,
     serverSide: true,
     ajax: base_path + '/discount',
-    columnDefs: [
-        {
-            targets: [0, 8],
-            orderable: false,
-            searchable: false,
-        },
-    ],
+    columnDefs: [{
+        targets: [0, 8],
+        orderable: false,
+        searchable: false,
+    }, ],
     aaSorting: [1, 'asc'],
-    columns: [
-        { data: 'row_select'},
-        { data: 'name', name: 'discounts.name' },
-        { data: 'starts_at', name: 'starts_at' },
-        { data: 'ends_at', name: 'ends_at' },
-        { data: 'priority', name: 'priority' },
-        { data: 'brand', name: 'b.name' },
-        { data: 'category', name: 'c.name' },
-        { data: 'location', name: 'l.name' },
-        { data: 'action', name: 'action' },
+    columns: [{
+            data: 'row_select'
+        },
+        {
+            data: 'name',
+            name: 'discounts.name'
+        },
+        {
+            data: 'starts_at',
+            name: 'starts_at'
+        },
+        {
+            data: 'ends_at',
+            name: 'ends_at'
+        },
+        {
+            data: 'priority',
+            name: 'priority'
+        },
+        {
+            data: 'brand',
+            name: 'b.name'
+        },
+        {
+            data: 'category',
+            name: 'c.name'
+        },
+        {
+            data: 'location',
+            name: 'l.name'
+        },
+        {
+            data: 'action',
+            name: 'action'
+        },
     ],
 });
 
@@ -1824,7 +1962,9 @@ $('.discount_modal').on('shown.bs.modal', function() {
         .find('.select2')
         .each(function() {
             var $p = $(this).parent();
-            $(this).select2({ dropdownParent: $p });
+            $(this).select2({
+                dropdownParent: $p
+            });
         });
     $('.discount_modal')
         .find('input[type="checkbox"].input-icheck')
@@ -1909,17 +2049,21 @@ function show_invoice_preview() {
     var preview = prefix + pad_zero(start_number, total_digits);
     $('#preview_format').text('#' + preview);
 }
+
 function pad_zero(str, max) {
     str = str.toString();
     return str.length < max ? pad_zero('0' + str, max) : str;
 }
+
 function get_sub_categories() {
     var cat = $('#category_id').val();
     $.ajax({
         method: 'POST',
         url: '/products/get_sub_categories',
         dataType: 'html',
-        data: { cat_id: cat },
+        data: {
+            cat_id: cat
+        },
         success: function(result) {
             if (result) {
                 $('#sub_category_id').html(result);
@@ -1927,15 +2071,18 @@ function get_sub_categories() {
         },
     });
 }
+
 function get_sub_units() {
     //Add dropdown for sub units if sub unit field is visible
-    if($('#sub_unit_ids').is(':visible')){
+    if ($('#sub_unit_ids').is(':visible')) {
         var unit_id = $('#unit_id').val();
         $.ajax({
             method: 'GET',
             url: '/products/get_sub_units',
             dataType: 'html',
-            data: { unit_id: unit_id },
+            data: {
+                unit_id: unit_id
+            },
             success: function(result) {
                 if (result) {
                     $('#sub_unit_ids').html(result);
@@ -1944,21 +2091,26 @@ function get_sub_units() {
         });
     }
 }
+
 function show_product_type_form() {
 
     //Disable Stock management & Woocommmerce sync if type combo
-    if($('#type').val() == 'combo'){
+    if ($('#type').val() == 'combo') {
         $('#enable_stock').iCheck('uncheck');
         $('input[name="woocommerce_disable_sync"]').iCheck('check');
     }
-    
+
     var action = $('#type').attr('data-action');
     var product_id = $('#type').attr('data-product_id');
     $.ajax({
         method: 'POST',
         url: '/products/product_form_part',
         dataType: 'html',
-        data: { type: $('#type').val(), product_id: product_id, action: action },
+        data: {
+            type: $('#type').val(),
+            product_id: product_id,
+            action: action
+        },
         success: function(result) {
             if (result) {
                 $('#product_form_part').html(result);
@@ -1969,8 +2121,7 @@ function show_product_type_form() {
 }
 
 $(document).on('click', 'table.ajax_view tbody tr', function(e) {
-    if (
-        !$(e.target).is('td.selectable_td input[type=checkbox]') &&
+    if (!$(e.target).is('td.selectable_td input[type=checkbox]') &&
         !$(e.target).is('td.selectable_td') &&
         !$(e.target).is('td.clickable_td') &&
         !$(e.target).is('a') &&
@@ -2199,19 +2350,28 @@ types_of_service_table = $('#types_of_service_table').DataTable({
     processing: true,
     serverSide: true,
     ajax: base_path + '/types-of-service',
-    columnDefs: [
-        {
-            targets: [3],
-            orderable: false,
-            searchable: false,
-        },
-    ],
+    columnDefs: [{
+        targets: [3],
+        orderable: false,
+        searchable: false,
+    }, ],
     aaSorting: [1, 'asc'],
-    columns: [
-        { data: 'name', name: 'name' },
-        { data: 'description', name: 'description' },
-        { data: 'packing_charge', name: 'packing_charge' },
-        { data: 'action', name: 'action' },
+    columns: [{
+            data: 'name',
+            name: 'name'
+        },
+        {
+            data: 'description',
+            name: 'description'
+        },
+        {
+            data: 'packing_charge',
+            name: 'packing_charge'
+        },
+        {
+            data: 'action',
+            name: 'action'
+        },
     ],
     fnDrawCallback: function(oSettings) {
         __currency_convert_recursively($('#types_of_service_table'));
@@ -2248,12 +2408,12 @@ $(document).on('click', 'button.delete_type_of_service', function(e) {
     });
 });
 
-$(document).on('submit', 'form#edit_shipping_form', function(e){
+$(document).on('submit', 'form#edit_shipping_form', function(e) {
     e.preventDefault();
     var data = $(this).serialize();
     $(this)
-    .find('button[type="submit"]')
-    .attr('disabled', true);
+        .find('button[type="submit"]')
+        .attr('disabled', true);
     $.ajax({
         method: $(this).attr('method'),
         url: $(this).attr('action'),
@@ -2271,28 +2431,32 @@ $(document).on('submit', 'form#edit_shipping_form', function(e){
     });
 });
 
-$(document).on('show.bs.modal', '.register_details_modal, .close_register_modal', function () {
+$(document).on('show.bs.modal', '.register_details_modal, .close_register_modal', function() {
     __currency_convert_recursively($(this));
 });
 
 function updateProfitLoss(start = null, end = null, location_id = null) {
-    if(start == null){
+    if (start == null) {
         var start = $('#profit_loss_date_filter')
-                    .data('daterangepicker')
-                    .startDate.format('YYYY-MM-DD');
-    }
-    
-    if(end == null){
-        var end = $('#profit_loss_date_filter')
-                    .data('daterangepicker')
-                    .endDate.format('YYYY-MM-DD');
+            .data('daterangepicker')
+            .startDate.format('YYYY-MM-DD');
     }
 
-    if(location_id == null){
+    if (end == null) {
+        var end = $('#profit_loss_date_filter')
+            .data('daterangepicker')
+            .endDate.format('YYYY-MM-DD');
+    }
+
+    if (location_id == null) {
         var location_id = $('#profit_loss_location_filter').val();
     }
 
-    var data = { start_date: start, end_date: end, location_id: location_id };
+    var data = {
+        start_date: start,
+        end_date: end,
+        location_id: location_id
+    };
 
     var loader = __fa_awesome();
     var pl_span = $('span#pl_span');
@@ -2316,11 +2480,11 @@ function updateProfitLoss(start = null, end = null, location_id = null) {
             pl_span.find('.total_purchase').html(__currency_trans_from_en(data.total_purchase, true));
             pl_span.find('.total_expense').html(__currency_trans_from_en(data.total_expense, true));
 
-            if($('.total_payroll').length > 0) {
+            if ($('.total_payroll').length > 0) {
                 pl_span.find('.total_payroll').html(__currency_trans_from_en(data.total_payroll, true));
             }
 
-            if($('.total_production_cost').length > 0) {
+            if ($('.total_production_cost').length > 0) {
                 pl_span.find('.total_production_cost').html(__currency_trans_from_en(data.total_production_cost, true));
             }
 
@@ -2350,7 +2514,7 @@ function updateProfitLoss(start = null, end = null, location_id = null) {
     });
 }
 
-$(document).on('click', 'button.activate-deactivate-location', function(){
+$(document).on('click', 'button.activate-deactivate-location', function() {
     swal({
         title: LANG.sure,
         icon: 'warning',

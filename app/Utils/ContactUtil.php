@@ -18,10 +18,10 @@ class ContactUtil
     public function getWalkInCustomer($business_id)
     {
         $contact = Contact::where('type', 'customer')
-                    ->where('business_id', $business_id)
-                    ->where('is_default', 1)
-                    ->first()
-                    ->toArray();
+            ->where('business_id', $business_id)
+            ->where('is_default', 1)
+            ->first()
+            ->toArray();
 
         if (!empty($contact)) {
             return $contact;

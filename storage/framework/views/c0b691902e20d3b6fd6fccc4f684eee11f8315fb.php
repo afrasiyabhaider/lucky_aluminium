@@ -1,13 +1,13 @@
-@extends('layouts.auth2')
-@section('title', __('lang_v1.login'))
+<?php $__env->startSection('title', __('lang_v1.login')); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="login-form col-md-12 col-xs-12 right-col-content">
-    <p class="form-header">@lang('lang_v1.login')</p>
-    <form method="POST" action="{{ route('login') }}">
-        {{ csrf_field() }}
-        <div class="form-group has-feedback {{ $errors->has('username') ? ' has-error' : '' }}">
-            @php
+    <p class="form-header"><?php echo app('translator')->getFromJson('lang_v1.login'); ?></p>
+    <form method="POST" action="<?php echo e(route('login'), false); ?>">
+        <?php echo e(csrf_field(), false); ?>
+
+        <div class="form-group has-feedback <?php echo e($errors->has('username') ? ' has-error' : '', false); ?>">
+            <?php
             $username = old('username');
             $password = null;
             if(config('app.env') == 'demo'){
@@ -31,51 +31,51 @@
             $username = $demo_types[$_GET['demo_type']];
             }
             }
-            @endphp
-            <input id="username" type="text" class="form-control" name="username" value="{{ $username }}" required
-                autofocus placeholder="@lang('lang_v1.username')">
+            ?>
+            <input id="username" type="text" class="form-control" name="username" value="<?php echo e($username, false); ?>" required
+                autofocus placeholder="<?php echo app('translator')->getFromJson('lang_v1.username'); ?>">
             <span class="fa fa-user form-control-feedback"></span>
-            @if ($errors->has('username'))
+            <?php if($errors->has('username')): ?>
             <span class="help-block">
-                <strong>{{ $errors->first('username') }}</strong>
+                <strong><?php echo e($errors->first('username'), false); ?></strong>
             </span>
-            @endif
+            <?php endif; ?>
         </div>
-        {{-- @dd(Hash::make('password')) --}}
-        <div class="form-group has-feedback {{ $errors->has('password') ? ' has-error' : '' }}">
-            <input id="password" type="password" class="form-control" name="password" value="{{ $password }}" required
-                placeholder="@lang('lang_v1.password')">
+        
+        <div class="form-group has-feedback <?php echo e($errors->has('password') ? ' has-error' : '', false); ?>">
+            <input id="password" type="password" class="form-control" name="password" value="<?php echo e($password, false); ?>" required
+                placeholder="<?php echo app('translator')->getFromJson('lang_v1.password'); ?>">
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-            @if ($errors->has('password'))
+            <?php if($errors->has('password')): ?>
             <span class="help-block">
-                <strong>{{ $errors->first('password') }}</strong>
+                <strong><?php echo e($errors->first('password'), false); ?></strong>
             </span>
-            @endif
+            <?php endif; ?>
         </div>
         <div class="form-group">
             <div class="checkbox icheck">
                 <label>
-                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                    @lang('lang_v1.remember_me')
+                    <input type="checkbox" name="remember" <?php echo e(old('remember') ? 'checked' : '', false); ?>>
+                    <?php echo app('translator')->getFromJson('lang_v1.remember_me'); ?>
                 </label>
             </div>
         </div>
         <br>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-flat btn-login">@lang('lang_v1.login')</button>
-            @if(config('app.env') != 'demo')
-            <a href="{{ route('password.request') }}" class="pull-right">
-                @lang('lang_v1.forgot_your_password')
+            <button type="submit" class="btn btn-primary btn-flat btn-login"><?php echo app('translator')->getFromJson('lang_v1.login'); ?></button>
+            <?php if(config('app.env') != 'demo'): ?>
+            <a href="<?php echo e(route('password.request'), false); ?>" class="pull-right">
+                <?php echo app('translator')->getFromJson('lang_v1.forgot_your_password'); ?>
             </a>
-            @endif
+            <?php endif; ?>
         </div>
     </form>
 </div>
-@if(config('app.env') == 'demo')
+<?php if(config('app.env') == 'demo'): ?>
 <div class="col-md-12 col-xs-12" style="padding-bottom: 30px;">
-    @component('components.widget', ['class' => 'box-primary', 'header' => '<h4 class="text-center">Demo Shops
+    <?php $__env->startComponent('components.widget', ['class' => 'box-primary', 'header' => '<h4 class="text-center">Demo Shops
         <small><i> Demos are for example purpose only, this application <u>can be used in many other similar
-                    businesses.</u></i></small></h4>'])
+                    businesses.</u></i></small></h4>']); ?>
 
     <a href="?demo_type=all_in_one" class="btn btn-app bg-olive" data-toggle="tooltip"
         title="Showcases all feature available in the application."> <i class="fa fa-star"></i> All In One</a>
@@ -112,16 +112,17 @@
         title="Manufacturing module demo" style="color:white !important">
         <i class="fa fa-industry"></i>
         Manufacturing Module</a>
-    @endcomponent
+    <?php echo $__env->renderComponent(); ?>
 </div>
-@endif
-@stop
-@section('javascript')
+<?php endif; ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('javascript'); ?>
 <script type="text/javascript">
     $(document).ready(function(){
         $('#change_lang').change( function(){
-            window.location = "{{ route('login') }}?lang=" + $(this).val();
+            window.location = "<?php echo e(route('login'), false); ?>?lang=" + $(this).val();
         });
     })
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.auth2', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>

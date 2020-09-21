@@ -165,7 +165,7 @@ class ContactController extends Controller
             ->where('contacts.business_id', $business_id)
             ->onlyCustomers()
             ->select([
-                'contacts.contact_id', 'contacts.name', 'contacts.created_at', 'total_rp', 'cg.name as customer_group', 'city', 'total_account_balance', 'state', 'country', 'landmark', 'mobile', 'contacts.id', 'is_default',
+                'contacts.contact_id', 'contacts.name', 'contacts.created_at', 'total_rp', 'cg.name as customer_group', 'city', 'total_account_balance', 'state', 'country', 'mobile', 'contacts.id', 'is_default',
                 DB::raw("SUM(IF(t.type = 'sell' AND t.status = 'final', final_total, 0)) as total_invoice"),
                 DB::raw("SUM(IF(t.type = 'sell' AND t.status = 'final', (SELECT SUM(IF(is_return = 1,-1*amount,amount)) FROM transaction_payments WHERE transaction_payments.transaction_id=t.id), 0)) as invoice_received"),
                 DB::raw("SUM(IF(t.type = 'sell_return', final_total, 0)) as total_sell_return"),
@@ -249,7 +249,8 @@ class ContactController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function saveTransaction(Request $request){
+    public function saveTransaction(Request $request)
+    {
         /**
          * We are editing a transaction thats either a deposit or a withdraw
          * Check the transaction type
@@ -270,22 +271,19 @@ class ContactController extends Controller
 
         $new_amount = $request->amount;
 
-        if($transaction->type == 'deposit'){
+        if ($transaction->type == 'deposit') {
 
             $total_account_balance = ($total_account_balance - $transaction->final_total) + $new_amount;
-            
         }
-        if($transaction->type == 'withdraw'){
+        if ($transaction->type == 'withdraw') {
 
             $total_account_balance = ($total_account_balance + $transaction->final_total) - $new_amount;
-            
         }
 
 
-        if($total_account_balance < 0){
+        if ($total_account_balance < 0) {
 
             return redirect('/contacts?type=customer');
-            
         }
 
         $contact->total_account_balance = $total_account_balance;
@@ -296,15 +294,14 @@ class ContactController extends Controller
         $transaction->save();
 
         return redirect('/contacts?type=customer');
-
-
     }
-    public function showTransaction($id){
+    public function showTransaction($id)
+    {
 
         if (!auth()->user()->can('supplier.update') && !auth()->user()->can('customer.update')) {
             abort(403, 'Unauthorized action.');
         }
-        
+
 
         $transaction = Transaction::find($id);
 
@@ -312,23 +309,22 @@ class ContactController extends Controller
 
         $arr = BusinessLocation::all();
 
-        foreach($arr as $location){
+        foreach ($arr as $location) {
             $locations[$location->id] = $location->name;
         }
-           
+
         return view('contact.edit_deposit')->with(compact('transaction', 'locations'));
-        
     }
-    public function printTransaction($id){
+    public function printTransaction($id)
+    {
 
         if (!auth()->user()->can('supplier.update') && !auth()->user()->can('customer.update')) {
             abort(403, 'Unauthorized action.');
         }
-        
+
         $transaction = Transaction::find($id);
 
         return view('contact.print_transaction')->with(compact('transaction'));
-
     }
     public function withdraw($id)
     {
@@ -362,10 +358,10 @@ class ContactController extends Controller
 
             $arr = BusinessLocation::all();
 
-            foreach($arr as $location){
+            foreach ($arr as $location) {
                 $locations[$location->id] = $location->name;
             }
-           
+
             return view('contact.withdraw')
                 ->with(compact('contact', 'types', 'customer_groups', 'locations'));
         }
@@ -402,41 +398,41 @@ class ContactController extends Controller
 
             $arr = BusinessLocation::all();
 
-            foreach($arr as $location){
+            foreach ($arr as $location) {
                 $locations[$location->id] = $location->name;
             }
-           
+
             return view('contact.deposit')
                 ->with(compact('contact', 'types', 'customer_groups', 'locations'));
         }
     }
-    public function makeWithdraw(Request $request){
+    public function makeWithdraw(Request $request)
+    {
         if (!auth()->user()->can('supplier.update') && !auth()->user()->can('customer.update')) {
             abort(403, 'Unauthorized action.');
         }
 
         if (request()->ajax()) {
             $business_id = request()->session()->get('user.business_id');
-           
+
             if (!$this->moduleUtil->isSubscribed($business_id)) {
                 return $this->moduleUtil->expiredResponse();
             }
-            
+
             $transaction_date = date('Y-m-d H:i:s');
 
             $contact = Contact::find($request->contact_id);
             $bce = $contact->total_account_balance;
             $bce_ed = number_format($bce);
-            
-            if($request->amount > $bce){
+
+            if ($request->amount > $bce) {
 
                 $output = [
-                        'success' => false,
-                        'msg' => "You may not withdraw more than $bce_ed which is the total account balance"
-                    ];
+                    'success' => false,
+                    'msg' => "You may not withdraw more than $bce_ed which is the total account balance"
+                ];
 
                 return $output;
-
             }
             $contact->total_account_balance -= $request->amount;
             $contact->save();
@@ -461,12 +457,11 @@ class ContactController extends Controller
             Transaction::create($data);
 
             $output = [
-                        'success' => true,
-                        'msg' => 'Success'
-                    ];
+                'success' => true,
+                'msg' => 'Success'
+            ];
 
             return $output;
-
         }
     }
     public function makeDeposit(Request $request)
@@ -478,11 +473,11 @@ class ContactController extends Controller
 
         if (request()->ajax()) {
             $business_id = request()->session()->get('user.business_id');
-           
+
             if (!$this->moduleUtil->isSubscribed($business_id)) {
                 return $this->moduleUtil->expiredResponse();
             }
-            
+
             $transaction_date = date('Y-m-d H:i:s');
 
             $util = new Util;
@@ -509,14 +504,12 @@ class ContactController extends Controller
             $contact->save();
 
             $output = [
-                        'success' => true,
-                        'msg' => 'Success'
-                    ];
+                'success' => true,
+                'msg' => 'Success'
+            ];
 
             return $output;
-
         }
-        
     }
     public function create()
     {
@@ -569,7 +562,7 @@ class ContactController extends Controller
 
             $input = $request->only([
                 'type', 'supplier_business_name',
-                'name', 'tax_number', 'pay_term_number', 'pay_term_type', 'mobile', 'landline', 'alternate_number', 'city', 'state', 'country', 'landmark', 'customer_group_id', 'contact_id', 'custom_field1', 'custom_field2', 'custom_field3', 'custom_field4', 'email'
+                'name', 'tax_number', 'pay_term_number', 'pay_term_type', 'mobile', 'landline', 'alternate_number', 'city', 'state', 'country', 'customer_group_id', 'contact_id', 'custom_field1', 'custom_field2', 'custom_field3', 'custom_field4', 'email'
             ]);
             $input['business_id'] = $business_id;
             $input['created_by'] = $request->session()->get('user.id');
@@ -614,7 +607,7 @@ class ContactController extends Controller
 
             $output = [
                 'success' => false,
-                'msg' => __("messages.something_went_wrong")
+                'msg' => __("messages.something_went_wrong in File:" . $e->getFile() . "Line:" . $e->getLine() . "Message:" . $e->getMessage())
             ];
         }
 
@@ -1238,14 +1231,14 @@ class ContactController extends Controller
             $c = '';
             $d = '';
 
-            if($transaction->type == 'deposit'){
+            if ($transaction->type == 'deposit') {
                 $c = $transaction->final_total;
-            }else{
-                if($transaction->type == 'withdraw'){
+            } else {
+                if ($transaction->type == 'withdraw') {
                     $d = $transaction->final_total;
                 }
             }
-            
+
             $ledger[] = [
                 'id' => $transaction->id,
                 'date' => $transaction->transaction_date,
