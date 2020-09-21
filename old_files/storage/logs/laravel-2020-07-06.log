@@ -1,0 +1,2 @@
+[2020-07-06 00:08:30] live.EMERGENCY: File:/home/temba12/demo.controyodestiny.tech/app/Http/Controllers/ImportOpeningStockController.phpLine:190Message:Invalid PRODUCT SKU in row no. 1  
+[2020-07-06 00:26:20] live.EMERGENCY: File:/home/temba12/demo.controyodestiny.tech/app/Utils/ProductUtil.phpLine:512Message:Trying to get property 'product_type' of non-object  

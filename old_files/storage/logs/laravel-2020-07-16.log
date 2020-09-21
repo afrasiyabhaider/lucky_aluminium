@@ -1,0 +1,19 @@
+[2020-07-16 00:56:12] live.EMERGENCY: File:/home/temba12/demo.controyodestiny.tech/app/Http/Controllers/ImportProductsController.phpLine:585Message:Invalid value for BARCODE TYPE in row no. 2  
+[2020-07-16 00:57:22] live.EMERGENCY: File:/home/temba12/demo.controyodestiny.tech/app/Http/Controllers/ImportProductsController.phpLine:585Message:Product name is required in row no. 172  
+[2020-07-16 23:01:53] live.EMERGENCY: File:/home/temba12/demo.controyodestiny.tech/app/Utils/ProductUtil.phpLine:512Message:Trying to get property 'product_type' of non-object  
+[2020-07-16 23:01:57] live.EMERGENCY: File:/home/temba12/demo.controyodestiny.tech/app/Utils/ProductUtil.phpLine:512Message:Trying to get property 'product_type' of non-object  
+[2020-07-16 23:02:00] live.EMERGENCY: File:/home/temba12/demo.controyodestiny.tech/app/Utils/ProductUtil.phpLine:512Message:Trying to get property 'product_type' of non-object  
+[2020-07-16 23:02:31] live.EMERGENCY: ERROR: NOT ALLOWED: Mismatch between sold and purchase quantity. Product: Blue Drums SKU: hht2552 Quantity: 9 Business: DEMO POS Location: SHOP B  
+[2020-07-16 23:02:31] live.EMERGENCY: File:/home/temba12/demo.controyodestiny.tech/app/Utils/TransactionUtil.phpLine:2547Message:ERROR: NOT ALLOWED: Mismatch between sold and purchase quantity. Product: Blue Drums SKU: hht2552 Quantity: 9  
+[2020-07-16 23:02:49] live.EMERGENCY: ERROR: NOT ALLOWED: Mismatch between sold and purchase quantity. Product: Blue Drums SKU: hht2552 Quantity: 2 Business: DEMO POS Location: SHOP B  
+[2020-07-16 23:02:49] live.EMERGENCY: File:/home/temba12/demo.controyodestiny.tech/app/Utils/TransactionUtil.phpLine:2547Message:ERROR: NOT ALLOWED: Mismatch between sold and purchase quantity. Product: Blue Drums SKU: hht2552 Quantity: 2  
+[2020-07-16 23:03:38] live.EMERGENCY: ERROR: NOT ALLOWED: Mismatch between sold and purchase quantity. Product: Blue Drums SKU: hht2552 Quantity: 2 Business: DEMO POS Location: SHOP B  
+[2020-07-16 23:03:38] live.EMERGENCY: File:/home/temba12/demo.controyodestiny.tech/app/Utils/TransactionUtil.phpLine:2547Message:ERROR: NOT ALLOWED: Mismatch between sold and purchase quantity. Product: Blue Drums SKU: hht2552 Quantity: 2  
+[2020-07-16 23:20:16] live.EMERGENCY: File:/home/temba12/demo.controyodestiny.tech/app/Utils/ProductUtil.phpLine:512Message:Trying to get property 'product_type' of non-object  
+[2020-07-16 23:20:18] live.EMERGENCY: File:/home/temba12/demo.controyodestiny.tech/app/Utils/ProductUtil.phpLine:512Message:Trying to get property 'product_type' of non-object  
+[2020-07-16 23:20:34] live.EMERGENCY: ERROR: NOT ALLOWED: Mismatch between sold and purchase quantity. Product: Blue Drums SKU: hht2552 Quantity: 9 Business: DEMO POS Location: SHOP B  
+[2020-07-16 23:20:34] live.EMERGENCY: File:/home/temba12/demo.controyodestiny.tech/app/Utils/TransactionUtil.phpLine:2547Message:ERROR: NOT ALLOWED: Mismatch between sold and purchase quantity. Product: Blue Drums SKU: hht2552 Quantity: 9  
+[2020-07-16 23:22:33] live.EMERGENCY: ERROR: NOT ALLOWED: Mismatch between sold and purchase quantity. Product: Blue Drums SKU: hht2552 Quantity: 9 Business: DEMO POS Location: SHOP B  
+[2020-07-16 23:22:33] live.EMERGENCY: File:/home/temba12/demo.controyodestiny.tech/app/Utils/TransactionUtil.phpLine:2547Message:ERROR: NOT ALLOWED: Mismatch between sold and purchase quantity. Product: Blue Drums SKU: hht2552 Quantity: 9  
+[2020-07-16 23:24:48] live.EMERGENCY: ERROR: NOT ALLOWED: Mismatch between sold and purchase quantity. Product: Blue Drums SKU: hht2552 Quantity: 9 Business: DEMO POS Location: SHOP B  
+[2020-07-16 23:24:48] live.EMERGENCY: File:/home/temba12/demo.controyodestiny.tech/app/Utils/TransactionUtil.phpLine:2547Message:ERROR: NOT ALLOWED: Mismatch between sold and purchase quantity. Product: Blue Drums SKU: hht2552 Quantity: 9  

@@ -1,0 +1,34 @@
+[2020-08-23 01:11:57] live.ERROR: Too many arguments, expected arguments "command". {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): Too many arguments, expected arguments \"command\". at G:\\Wamps\\wamp64\\www\\arcocia_projects\\web_development\\epos\\vendor\\symfony\\console\\Input\\ArgvInput.php:183)
+[stacktrace]
+#0 G:\\Wamps\\wamp64\\www\\arcocia_projects\\web_development\\epos\\vendor\\symfony\\console\\Input\\ArgvInput.php(86): Symfony\\Component\\Console\\Input\\ArgvInput->parseArgument('clear')
+#1 G:\\Wamps\\wamp64\\www\\arcocia_projects\\web_development\\epos\\vendor\\symfony\\console\\Input\\Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#2 G:\\Wamps\\wamp64\\www\\arcocia_projects\\web_development\\epos\\vendor\\symfony\\console\\Command\\Command.php(214): Symfony\\Component\\Console\\Input\\Input->bind(Object(Symfony\\Component\\Console\\Input\\InputDefinition))
+#3 G:\\Wamps\\wamp64\\www\\arcocia_projects\\web_development\\epos\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(170): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#4 G:\\Wamps\\wamp64\\www\\arcocia_projects\\web_development\\epos\\vendor\\symfony\\console\\Application.php(934): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 G:\\Wamps\\wamp64\\www\\arcocia_projects\\web_development\\epos\\vendor\\symfony\\console\\Application.php(273): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Foundation\\Console\\OptimizeCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#6 G:\\Wamps\\wamp64\\www\\arcocia_projects\\web_development\\epos\\vendor\\symfony\\console\\Application.php(149): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 G:\\Wamps\\wamp64\\www\\arcocia_projects\\web_development\\epos\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(89): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#8 G:\\Wamps\\wamp64\\www\\arcocia_projects\\web_development\\epos\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(122): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#9 G:\\Wamps\\wamp64\\www\\arcocia_projects\\web_development\\epos\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 {main}
+"} 
+[2020-08-23 14:56:08] live.EMERGENCY: File:G:\Wamps\wamp64\www\arcocia_projects\web_development\epos\app\Utils\ProductUtil.phpLine:512Message:Trying to get property 'product_type' of non-object  
+[2020-08-23 14:56:11] live.EMERGENCY: File:G:\Wamps\wamp64\www\arcocia_projects\web_development\epos\app\Utils\ProductUtil.phpLine:512Message:Trying to get property 'product_type' of non-object  
+[2020-08-23 14:56:17] live.EMERGENCY: File:G:\Wamps\wamp64\www\arcocia_projects\web_development\epos\app\Utils\ProductUtil.phpLine:512Message:Trying to get property 'product_type' of non-object  
+[2020-08-23 14:56:18] live.EMERGENCY: File:G:\Wamps\wamp64\www\arcocia_projects\web_development\epos\app\Utils\ProductUtil.phpLine:512Message:Trying to get property 'product_type' of non-object  
+[2020-08-23 14:56:20] live.EMERGENCY: File:G:\Wamps\wamp64\www\arcocia_projects\web_development\epos\app\Utils\ProductUtil.phpLine:512Message:Trying to get property 'product_type' of non-object  
+[2020-08-23 14:56:23] live.EMERGENCY: File:G:\Wamps\wamp64\www\arcocia_projects\web_development\epos\app\Utils\ProductUtil.phpLine:512Message:Trying to get property 'product_type' of non-object  
+[2020-08-23 14:56:24] live.EMERGENCY: File:G:\Wamps\wamp64\www\arcocia_projects\web_development\epos\app\Utils\ProductUtil.phpLine:512Message:Trying to get property 'product_type' of non-object  
+[2020-08-23 14:56:24] live.EMERGENCY: File:G:\Wamps\wamp64\www\arcocia_projects\web_development\epos\app\Utils\ProductUtil.phpLine:512Message:Trying to get property 'product_type' of non-object  
+[2020-08-23 14:56:29] live.EMERGENCY: File:G:\Wamps\wamp64\www\arcocia_projects\web_development\epos\app\Utils\ProductUtil.phpLine:512Message:Trying to get property 'product_type' of non-object  
+[2020-08-23 14:56:30] live.EMERGENCY: File:G:\Wamps\wamp64\www\arcocia_projects\web_development\epos\app\Utils\ProductUtil.phpLine:512Message:Trying to get property 'product_type' of non-object  
+[2020-08-23 15:03:19] live.EMERGENCY: File:G:\Wamps\wamp64\www\arcocia_projects\web_development\epos\app\Utils\TransactionUtil.phpLine:41Message:Undefined index: is_credit  
+[2020-08-23 15:03:58] live.EMERGENCY: File:G:\Wamps\wamp64\www\arcocia_projects\web_development\epos\app\Utils\TransactionUtil.phpLine:41Message:Undefined index: is_credit  
+[2020-08-23 15:04:21] live.EMERGENCY: File:G:\Wamps\wamp64\www\arcocia_projects\web_development\epos\app\Utils\TransactionUtil.phpLine:41Message:Undefined index: is_credit  
+[2020-08-23 15:10:27] live.EMERGENCY: File:G:\Wamps\wamp64\www\arcocia_projects\web_development\epos\app\Utils\ProductUtil.phpLine:512Message:Trying to get property 'product_type' of non-object  
+[2020-08-23 15:10:27] live.EMERGENCY: File:G:\Wamps\wamp64\www\arcocia_projects\web_development\epos\app\Utils\ProductUtil.phpLine:512Message:Trying to get property 'product_type' of non-object  
+[2020-08-23 15:10:29] live.EMERGENCY: File:G:\Wamps\wamp64\www\arcocia_projects\web_development\epos\app\Utils\ProductUtil.phpLine:512Message:Trying to get property 'product_type' of non-object  
+[2020-08-23 15:10:32] live.EMERGENCY: File:G:\Wamps\wamp64\www\arcocia_projects\web_development\epos\app\Utils\ProductUtil.phpLine:512Message:Trying to get property 'product_type' of non-object  
+[2020-08-23 15:10:46] live.EMERGENCY: File:G:\Wamps\wamp64\www\arcocia_projects\web_development\epos\app\Utils\ProductUtil.phpLine:512Message:Trying to get property 'product_type' of non-object  
+[2020-08-23 15:10:49] live.EMERGENCY: File:G:\Wamps\wamp64\www\arcocia_projects\web_development\epos\app\Utils\ProductUtil.phpLine:512Message:Trying to get property 'product_type' of non-object  
+[2020-08-23 15:22:57] live.EMERGENCY: File:G:\Wamps\wamp64\www\arcocia_projects\web_development\epos\app\Utils\ProductUtil.phpLine:512Message:Trying to get property 'product_type' of non-object  

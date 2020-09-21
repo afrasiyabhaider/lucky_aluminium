@@ -1,0 +1,3 @@
+[2020-07-15 12:36:03] live.EMERGENCY: File:/home/temba12/demo.controyodestiny.tech/app/Utils/ProductUtil.phpLine:512Message:Trying to get property 'product_type' of non-object  
+[2020-07-15 12:36:08] live.EMERGENCY: File:/home/temba12/demo.controyodestiny.tech/app/Utils/ProductUtil.phpLine:512Message:Trying to get property 'product_type' of non-object  
+[2020-07-15 12:40:23] live.EMERGENCY: File:/home/temba12/demo.controyodestiny.tech/app/Utils/ProductUtil.phpLine:512Message:Trying to get property 'product_type' of non-object  
