@@ -40,7 +40,7 @@ Route::middleware(['IsInstalled', 'auth', 'SetSessionData', 'language', 'timezon
     Route::get('/home/sales-payment-dues', 'HomeController@getSalesPaymentDues');
 
     Route::get('/load-more-notifications', 'HomeController@loadMoreNotifications');
-    
+
     Route::post('/test-email', 'BusinessController@testEmailConfiguration');
     Route::post('/test-sms', 'BusinessController@testSmsConfiguration');
     Route::get('/business/settings', 'BusinessController@getBusinessSettings')->name('business.getBusinessSettings');
@@ -50,7 +50,7 @@ Route::middleware(['IsInstalled', 'auth', 'SetSessionData', 'language', 'timezon
     Route::post('/user/update-password', 'UserController@updatePassword')->name('user.updatePassword');
 
     Route::resource('brands', 'BrandController');
-    
+
     Route::resource('payment-account', 'PaymentAccountController');
 
     Route::resource('tax-rates', 'TaxRateController');
@@ -91,7 +91,7 @@ Route::middleware(['IsInstalled', 'auth', 'SetSessionData', 'language', 'timezon
     Route::post('/products/bulk-update', 'ProductController@bulkUpdate');
     Route::post('/products/bulk-update-location', 'ProductController@updateProductLocation');
     Route::get('/products/get-product-to-edit/{product_id}', 'ProductController@getProductToEdit');
-    
+
     Route::post('/products/get_sub_categories', 'ProductController@getSubCategories');
     Route::get('/products/get_sub_units', 'ProductController@getSubUnits');
     Route::post('/products/product_form_part', 'ProductController@getProductVariationFormPart');
@@ -102,7 +102,7 @@ Route::middleware(['IsInstalled', 'auth', 'SetSessionData', 'language', 'timezon
     Route::get('/products/quick_add', 'ProductController@quickAdd');
     Route::post('/products/save_quick_product', 'ProductController@saveQuickProduct');
     Route::get('/products/get-combo-product-entry-row', 'ProductController@getComboProductEntryRow');
-    
+
     Route::resource('products', 'ProductController');
 
     Route::post('/purchases/update-status', 'PurchaseController@updateStatus');
@@ -183,7 +183,7 @@ Route::middleware(['IsInstalled', 'auth', 'SetSessionData', 'language', 'timezon
     Route::get('/reports/adjust-product-stock', 'ReportController@adjustProductStock');
     Route::get('/reports/get-profit/{by?}', 'ReportController@getProfit');
     Route::get('/reports/items-report', 'ReportController@itemsReport');
-    
+
     Route::get('business-location/activate-deactivate/{location_id}', 'BusinessLocationController@activateDeactivateLocation');
 
     //Business Location Settings...
@@ -191,11 +191,11 @@ Route::middleware(['IsInstalled', 'auth', 'SetSessionData', 'language', 'timezon
         Route::get('settings', 'LocationSettingsController@index')->name('settings');
         Route::post('settings', 'LocationSettingsController@updateSettings')->name('settings_update');
     });
-    
-    Route::get('payment_voucher/create','PaymentVoucherController@create');
-    Route::post('payment_voucher/','PaymentVoucherController@store');
-    Route::get('payment_voucher/','PaymentVoucherController@index');
-    Route::get('payment_voucher/{id}/slip','PaymentVoucherController@print_slip')->name('voucher.printInvoice');
+
+    Route::get('payment_voucher/create', 'PaymentVoucherController@create');
+    Route::post('payment_voucher/', 'PaymentVoucherController@store');
+    Route::get('payment_voucher/', 'PaymentVoucherController@index');
+    Route::get('payment_voucher/{id}/slip', 'PaymentVoucherController@print_slip')->name('voucher.printInvoice');
 
 
     //Business Locations...
@@ -242,7 +242,7 @@ Route::middleware(['IsInstalled', 'auth', 'SetSessionData', 'language', 'timezon
     //Stock Transfer
     Route::get('stock-transfers/print/{id}', 'StockTransferController@printInvoice');
     Route::resource('stock-transfers', 'StockTransferController');
-    
+
     Route::get('/opening-stock/add/{product_id}', 'OpeningStockController@add');
     Route::post('/opening-stock/save', 'OpeningStockController@save');
 
@@ -258,7 +258,7 @@ Route::middleware(['IsInstalled', 'auth', 'SetSessionData', 'language', 'timezon
     Route::get('sell-return/get-product-row', 'SellReturnController@getProductRow');
     Route::get('/sell-return/print/{id}', 'SellReturnController@printInvoice');
     Route::get('/sell-return/add/{id}', 'SellReturnController@add');
-    
+
     //Backup
     Route::get('backup/download/{file_name}', 'BackUpController@download');
     Route::get('backup/delete/{file_name}', 'BackUpController@delete');
@@ -303,7 +303,7 @@ Route::middleware(['IsInstalled', 'auth', 'SetSessionData', 'language', 'timezon
         Route::post('/link-account', 'AccountReportsController@postLinkAccount');
         Route::get('/cash-flow', 'AccountController@cashFlow');
     });
-    
+
     Route::resource('account-types', 'AccountTypeController');
 
     //Restaurant module
@@ -350,7 +350,7 @@ Route::get('migrate', function () {
 });
 Route::get('optimize-clear', function () {
     \Artisan::call('optimize:clear');
-    dd("Optimized");
+    dd("System Optimized");
 });
 
 Route::middleware(['EcomApi'])->prefix('api/ecom')->group(function () {
