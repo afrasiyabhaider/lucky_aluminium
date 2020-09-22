@@ -106,15 +106,20 @@ $(document).ready(function() {
         var purchase_inc_tax = __read_number($('input#single_dpp_inc_tax'));
         purchase_inc_tax = purchase_inc_tax == undefined ? 0 : purchase_inc_tax;
 
-        var purchase_exc_tax = __read_number($('input#single_dpp'));
-        purchase_exc_tax = purchase_exc_tax == undefined ? 0 : purchase_exc_tax;
+        var sell_exc_tax = __read_number($('input#single_dsp'));
+        // var purchase_exc_tax = __read_number($('input#single_dpp'));
+        sell_exc_tax = sell_exc_tax == undefined ? 0 : sell_exc_tax;
 
         var profit_percent = __read_number($('input#profit_percent'));
-        var selling_price = __add_percent(purchase_exc_tax, profit_percent);
-        __write_number($('input#single_dsp'), selling_price);
+        // var selling_price = __add_percent(sell_exc_tax, profit_percent);
+        // __write_number($('input#single_dsp'), selling_price);
 
-        var selling_price_inc_tax = __add_percent(selling_price, tax_rate);
-        __write_number($('input#single_dsp_inc_tax'), selling_price_inc_tax);
+        var selling_price_inc_tax = __substract_percent(sell_exc_tax, profit_percent);
+        // var selling_price_inc_tax = __add_percent(selling_price, tax_rate);
+
+        // __write_number($('input#single_dsp_inc_tax'), selling_price_inc_tax);
+        __write_number($('input#single_dpp'), selling_price_inc_tax);
+        __write_number($('input#single_dpp_inc_tax'), selling_price_inc_tax);
     });
 
     $(document).on('change', 'input#single_dsp', function(e) {
@@ -126,11 +131,19 @@ $(document).ready(function() {
         var selling_price = __read_number($('input#single_dsp'));
         var purchase_exc_tax = __read_number($('input#single_dpp'));
 
-        var profit_percent = __get_rate(purchase_exc_tax, selling_price);
-        __write_number($('input#profit_percent'), profit_percent);
+        // var profit_percent = __get_rate(purchase_exc_tax, selling_price);
+        // __write_number($('input#profit_percent'), profit_percent);
 
-        var selling_price_inc_tax = __add_percent(selling_price, tax_rate);
-        __write_number($('input#single_dsp_inc_tax'), selling_price_inc_tax);
+        var profit_percent = __read_number($('input#profit_percent'));
+
+        var selling_price_inc_tax = __substract_percent(selling_price, profit_percent);
+
+        // console.log(selling_price, profit_percent, selling_price_inc_tax);
+        // var selling_price_inc_tax = __add_percent(selling_price, tax_rate);
+        __write_number($('input#single_dsp_inc_tax'), selling_price);
+
+        __write_number($('input#single_dpp'), selling_price_inc_tax);
+        __write_number($('input#single_dpp_inc_tax'), selling_price_inc_tax);
     });
 
     $(document).on('change', 'input#single_dsp_inc_tax', function(e) {
@@ -177,8 +190,8 @@ $(document).ready(function() {
                         depends: function(element) {
                             return (
                                 $('#expiry_period_type')
-                                    .val()
-                                    .trim() != ''
+                                .val()
+                                .trim() != ''
                             );
                         },
                     },
@@ -307,8 +320,8 @@ $(document).ready(function() {
 
         if (
             $(this)
-                .closest('.variation_row')
-                .find('.row_edit').length >= 1
+            .closest('.variation_row')
+            .find('.row_edit').length >= 1
         ) {
             var row_type = 'edit';
         } else {
@@ -341,8 +354,8 @@ $(document).ready(function() {
         if ($(this).val() !== '') {
             tr_obj.find('input.variation_name').val(
                 $(this)
-                    .find('option:selected')
-                    .text()
+                .find('option:selected')
+                .text()
             );
 
             var template_id = $(this).val();
@@ -354,7 +367,10 @@ $(document).ready(function() {
                 method: 'POST',
                 url: '/products/get_variation_template',
                 dataType: 'html',
-                data: { template_id: template_id, row_index: row_index },
+                data: {
+                    template_id: template_id,
+                    row_index: row_index
+                },
                 success: function(result) {
                     if (result) {
                         tr_obj
@@ -457,7 +473,12 @@ $(document).ready(function() {
         browseLabel: LANG.file_browse_label,
         removeLabel: LANG.remove,
         previewSettings: {
-            image: { width: 'auto', height: 'auto', 'max-width': '100%', 'max-height': '100%' },
+            image: {
+                width: 'auto',
+                height: 'auto',
+                'max-width': '100%',
+                'max-height': '100%'
+            },
         },
     };
     $('#upload_image').fileinput(img_fileinput_setting);
@@ -581,7 +602,7 @@ $(document).on('submit', 'form#quick_add_brand_form', function(e) {
     });
 });
 
-$(document).on('click', '.delete-media', function () {
+$(document).on('click', '.delete-media', function() {
     swal({
         title: LANG.sure,
         icon: 'warning',
