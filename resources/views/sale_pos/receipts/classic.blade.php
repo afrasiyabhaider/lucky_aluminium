@@ -409,3 +409,8 @@
 		</div>
 	</div>
 @endif
+<div class="row">
+	<div class="col-xs-12 text-center">
+		<p>This System is Powered by ARCOCIA. Call us at +92 335 7997550</p>
+	</div>
+</div>
