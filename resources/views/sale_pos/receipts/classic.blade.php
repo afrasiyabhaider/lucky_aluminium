@@ -202,7 +202,7 @@
 
 <div class="row">
 	<div class="col-xs-12">
-		<table class="table table-responsive" style="letter-spacing: 1px;font-size:16px;font-family: Arial !important; ">
+		<table class="table table-responsive table-bordered" style="letter-spacing: 1px;font-size:16px;font-family: Arial !important; ">
 			<thead>
 				<tr>
 					<th>{{$receipt_details->table_product_label}}</th>
