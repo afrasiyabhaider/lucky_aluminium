@@ -411,6 +411,8 @@
 @endif
 <div class="row">
 	<div class="col-xs-12 text-center">
-		<p>This System is Powered by ARCOCIA. Call us at +92 335 7997550</p>
+		<p>
+			This System is Powered by ARCOCIA. Call us at +92 335 7997550 or Visit us at www.arcocia.tech
+		</p>
 	</div>
 </div>

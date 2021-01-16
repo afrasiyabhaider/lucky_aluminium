@@ -404,6 +404,9 @@
 					{!! $receipt_details->footer_text !!}
 				</p>
 			@endif
+			<p class="centered">
+				This System is Powered by ARCOCIA. Call us at +92 335 7997550 or Visit us at www.arcocia.tech
+			</p>
         </div>
         <!-- <button id="btnPrint" class="hidden-print">Print</button>
         <script src="script.js"></script> -->

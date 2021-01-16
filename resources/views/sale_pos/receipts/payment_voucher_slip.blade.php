@@ -121,6 +121,13 @@
                     </div>
 
                     <br>
+                    <div class="row color-555">
+                         <div class="col-xs-12">
+                              <p>
+                                   This System is Powered by ARCOCIA. Call us at +92 335 7997550 or Visit us at www.arcocia.tech
+                              </p>
+                         </div>
+                    </div>
 
                </td>
           </tr>
